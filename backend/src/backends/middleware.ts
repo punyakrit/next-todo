@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
 declare global {
     namespace Express {
@@ -8,35 +8,33 @@ declare global {
         }
     }
 }
-export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    const token = req.cookies.token
 
-    if(!token){
-        console.log(token)
+export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+    const authHeader = req.cookies.token;
+
+    if (!authHeader) {
+        console.log(authHeader)
         return res.status(403).json({
             message: "Not authenticated"
         });
     }
-    try{
 
-        const decoded:any = jwt.verify(token,"mypassword")
-        if(decoded){
-            const uId = decoded.userId
-            req.userId = uId
-            console.log(token)
-            next()
-        }else{
-            res.json({
-                message:"Invalid token",
-            })
+
+    try {
+        const decoded: any = jwt.verify(authHeader, "mypassword");
+        if (decoded) {
+            const uId = decoded.userId;
+            req.userId = uId;
+            console.log(authHeader);
+            next();
+        } else {
+            return res.json({
+                message: "Token invalid"
+            });
         }
-    }catch(error){
+    } catch (error) {
         res.json({
-            message:"Error occured",
-            error
-        })
+            message: "Invalid token"
+        });
     }
-
-
-    next()
-}
+};
