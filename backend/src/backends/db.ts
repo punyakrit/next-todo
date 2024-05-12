@@ -44,3 +44,27 @@ const otpSchema = new mongoose.Schema({
 })
 
 export const otpModel = mongoose.model('Otp', otpSchema);
+
+
+const taskTodo = new mongoose.Schema({
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required: true
+    },
+    title:{
+        type: String,
+        require: true
+    },
+    description:{
+        type: String,
+        require: true
+    },
+    isDone:{
+        type:Boolean,
+        default:false,
+        require:false
+    }
+})
+
+export const taskSchema = mongoose.model("Task",taskTodo)
