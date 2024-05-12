@@ -65,7 +65,7 @@ route.post('/signup', async (req, res) => {
             const info = await transporter.sendMail({
                 from: 'mailautomation0@gmail.com',
                 to: body.email,
-                subject: 'Otp for messaging-anonymous',
+                subject: 'Otp for todo-lists',
                 text: `Otp for username: ${body.username} is ${otp}`,
                 html: `<b>Otp for username: ${body.username} is ${otp}</b>`
             });
