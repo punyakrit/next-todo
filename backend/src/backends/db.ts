@@ -64,6 +64,11 @@ const taskTodo = new mongoose.Schema({
         type:Boolean,
         default:false,
         require:false
+    },
+    date:{
+        type:Date,
+        default: Date.now,
+        required: true
     }
 })
 
