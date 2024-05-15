@@ -35,7 +35,7 @@ function Appbar() {
   };
 
   return (
-    <div className="h-20 fixed w-screen flex justify-between px-40 items-center">
+    <div className="h-20 backdrop-blur-md fixed w-screen flex justify-between px-40 items-center">
       <Link href={"/"}>
         <div className="text-3xl font-bold italic">EasyTasks</div>
       </Link>

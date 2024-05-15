@@ -27,7 +27,7 @@ route.post('/signup', async (req, res) => {
     const body = req.body
     const { success } = userSchema.safeParse(req.body)
     if (!success) {
-        return res.json({
+        return res.status(400).json({
             message: "Error Occured Enter correct values"
         })
     }
@@ -38,7 +38,7 @@ route.post('/signup', async (req, res) => {
         })
 
         if (userExists) {
-            return res.json({
+            return res.status(400).json({
                 message: "User already exists kindly login"
             })
         } else {
@@ -72,13 +72,13 @@ route.post('/signup', async (req, res) => {
             
             console.log(`Message sent to ${body.email}: ${info.messageId}`);
 
-            res.json({
+            res.status(200).json({
                 message: "User created",
                 token
             })
         }
     } catch (error) {
-        res.json({
+        res.status(400).json({
             message: "Signup server crashed",
             error
         })
