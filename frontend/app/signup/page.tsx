@@ -1,14 +1,12 @@
 import Appbar from '@/components/ui/Appbar'
-import Home from '@/pages/Home'
+import SignUp from '@/pages/SignUp'
 import React from 'react'
 
-function page() {
+export default function page() {
   return (
     <div className='h-screen w-full bg-gray-900 text-white'>
       <Appbar/>
-      <Home/>
+        <SignUp/>
     </div>
   )
 }
-
-export default page

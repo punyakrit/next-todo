@@ -24,6 +24,14 @@ route.post('/',authMiddleware,async(req,res)=>{
 
 })
 
+route.get('/dummy',async(req,res)=>{
+      
+        res.json({
+            message:"Dummy task"
+        })
+    
+
+})
 
 route.get('/',authMiddleware,async(req,res)=>{
     try{
@@ -63,6 +71,21 @@ route.put('/:id', authMiddleware, async (req, res) => {
     }
 });
 
+route.delete('/:id', authMiddleware, async (req, res) => {
+    const taskId = req.params.id;
+
+    try {
+        const task = await taskSchema.findByIdAndDelete(taskId);
+
+        if (!task) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+
+        res.json({ message: "Task deleted", task });
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error", error });
+    }
+});
 
 
 export default route
