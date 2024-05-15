@@ -18,19 +18,11 @@ var transporter = nodemailer.createTransport({
 });
 
 
-const otpSchema = z.object({
-    otp: z.string().max(4)
-})
+
 
 route.post('/verify-otp', authMiddleware, async (req, res) => {
     const body = req.body
-    const { success } = otpSchema.safeParse(req.body)
-    
-    if (!success) {
-        return res.json({
-            message: "Invalid inputs"
-        })
-    }
+   
 
     try {
         const userExists = await UserModel.findOne({
