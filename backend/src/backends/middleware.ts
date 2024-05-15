@@ -10,30 +10,30 @@ declare global {
 }
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    const authHeader = req.cookies.token;
+    const token = req.cookies.token;
+    
+    console.log("Middleware in use");
 
-    if (!authHeader) {
-        console.log(authHeader)
+    if (!token) {
+        console.log("No token found in cookies");
         return res.status(403).json({
             message: "Not authenticated"
         });
     }
 
-
     try {
-        const decoded: any = jwt.verify(authHeader, "mypassword");
+        const decoded: any = jwt.verify(token, "mypassword");
         if (decoded) {
-            const uId = decoded.userId;
-            req.userId = uId;
-            console.log(authHeader);
+            req.userId = decoded.userId;
+            console.log("Token: " + token);
             next();
         } else {
-            return res.json({
+            return res.status(403).json({
                 message: "Token invalid"
             });
         }
     } catch (error) {
-        res.json({
+        return res.status(403).json({
             message: "Invalid token"
         });
     }

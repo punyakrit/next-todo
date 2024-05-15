@@ -10,4 +10,13 @@ route.use('/otp',otpRoute)
 route.use('/user', userRoute)
 route.use('/task',taskRoute)
 
+route.get('/',(req,res)=>{
+    const tokens = req.cookies
+    console.log(tokens)
+    res.json({
+        message:"Hello",
+        tokens
+    })
+})
+
 export default route

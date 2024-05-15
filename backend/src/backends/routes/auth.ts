@@ -97,7 +97,7 @@ route.post('/signin',async (req,res)=>{
 
     const {success} = signinSchema.safeParse(req.body)
     if(!success){
-        return res.json({
+        return res.status(400).json({
             message: "Error Occured Enter correct values"
         })
     }
@@ -107,7 +107,7 @@ route.post('/signin',async (req,res)=>{
             username: body.username
         })
         if(!userExists){
-            return res.json({
+            return res.status(400).json({
                 message:"Username does not exists"
             })
         }else{
@@ -116,18 +116,18 @@ route.post('/signin',async (req,res)=>{
             if(passMatch){
                 const token = jwt.sign({ userId: userExists._id }, "mypassword")
                 res.cookie('token', token)
-                return res.json({
+                return res.status(200).json({
                     message: "Login successful",
                     token
                 })
             }else{
-                return res.json({
+                return res.status(400).json({
                     message: "Incorrect password"
                 })
             }
         }
     }catch(error){
-        res.json({
+        res.status(400).json({
             message: "Signup server crashed",
             error
         })

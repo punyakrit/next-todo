@@ -1,8 +1,12 @@
-import React from "react";
 import tt from "@/public/assets/tt.png";
 import Image from "next/image";
-function Home() {
+import Link from "next/link";
+
+ function Home() {
+ 
+  
   return (
+    
     <div className=" h-full items-center flex px-40">
       <div className="w-2/3">
         <div className="text-7xl font-bold">
@@ -13,12 +17,16 @@ function Home() {
           again with our powerful todo app.
         </div>
         <div className="flex space-x-11">
+          <Link href={'signup'}>
           <div className="bg-black text-white px-7 cursor-pointer py-3 rounded-xl text-xl">
             SignUp
           </div>
+          </Link>
+          <Link href={'/signin'}>
           <div className="bg-white text-black px-7 py-3 rounded-xl cursor-pointer text-xl">
             Login
           </div>
+          </Link>
         </div>
       </div>
       <div className="w-1/3">

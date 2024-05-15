@@ -1,14 +1,14 @@
 import express from 'express'
 import cors from 'cors'
 import mainRoute from './backends/index'
-import cookieparser from 'cookie-parser'
+import cookieParser from 'cookie-parser';
 const app = express()
 app.use(express.json())
-app.use(cookieparser())
+app.use(cookieParser());
 app.use(cors({
-    credentials:true,
-    origin:"http://localhost:3000/"
-}))
+    origin: 'http://localhost:3000', 
+    credentials:true
+  }));
 
 app.use('/api/v1', mainRoute)
 
