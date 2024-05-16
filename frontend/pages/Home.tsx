@@ -7,7 +7,7 @@ import Link from "next/link";
   
   return (
     
-    <div className=" h-full items-center flex px-40">
+    <div className=" h-full items-center flex px-10 xl:px-40">
       <div className="w-2/3">
         <div className="text-7xl font-bold">
           Stay on top of your tasks with our Todo App

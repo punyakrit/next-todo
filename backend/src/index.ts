@@ -6,7 +6,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser());
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://another-example.com'],
+  origin: ['http://localhost:3000', 'https://next-todo-drab.vercel.app'],
     credentials:true
   }));
 
