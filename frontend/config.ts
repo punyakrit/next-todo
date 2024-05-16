@@ -1,1 +1,1 @@
-export const url = "https://back1.infinitehealings.in/api/v1/"
+export const url = "https://back1.infinitehealings.in/api/v1"
